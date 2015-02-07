@@ -9,7 +9,7 @@ from datetime import datetime
 
 def home(request):
     """Renders the home page."""
-   return JsonRequest({"text":"hi"})
+    return JsonRequest({"text":"hi"})
 
 def contact(request):
     """Renders the contact page."""
