@@ -3,13 +3,13 @@ Definition of views.
 """
 
 from django.shortcuts import render
-from django.http import HttpRequest JsonRequest
+from django.http import HttpRequest, JsonResponse
 from django.template import RequestContext
 from datetime import datetime
 
 def home(request):
     """Renders the home page."""
-   return JsonRequest({"text":"hi"})
+    return JsonResponse({"text":"hi"})
 
 def sendSmsVerificationCode(request):
 	from twilio.rest import TwilioRestClient
