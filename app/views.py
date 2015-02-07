@@ -3,22 +3,13 @@ Definition of views.
 """
 
 from django.shortcuts import render
-from django.http import HttpRequest
+from django.http import HttpRequest JsonRequest
 from django.template import RequestContext
 from datetime import datetime
 
 def home(request):
     """Renders the home page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/index.html',
-        context_instance = RequestContext(request,
-        {
-            'title':'Home Page',
-            'year':datetime.now().year,
-        })
-    )
+   return JsonRequest({"text":"hi"})
 
 def contact(request):
     """Renders the contact page."""
