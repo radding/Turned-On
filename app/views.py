@@ -11,17 +11,21 @@ def home(request):
     """Renders the home page."""
     return JsonResponse({"text":"hi"})
 
-def sendSmsVerificationCode(request):
+def sendSmsVerificationCode(request, userPhoneNumberToVerify):
 	from twilio.rest import TwilioRestClient
 
+	# This should be the "master number" for our Twilio account.
 	fromNumber = "+14012065509"
+
 	ACCOUNT_SID = "ACf3f0805e01bc0a3db41e7aae79bc96d5"
 	AUTH_TOKEN = "acf544c7ffb70d7b888eabc81d75698a"
 
 	client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
 
+	# TODO: this code should be randomly generated and 
 	verificationCode = "1234"
-	userPhoneNumberToVerify = "2063838296"
+
+	# userPhoneNumberToVerify = "2063838296"
 
 	client.messages.create(
 		to=userPhoneNumberToVerify,
