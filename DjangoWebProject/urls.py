@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^contact$', 'app.views.contact', name='contact'),
     url(r'^about', 'app.views.about', name='about'),
     url(r'^sendSmsVerificationCode/(?P<userPhoneNumberToVerify>\d{10})', 'app.views.sendSmsVerificationCode', name='sendSmsVerificationCode'),
+    url(r'^checkWhetherSmsVerificationCodeIsValidAndReturnAToken/forPhoneNumber/(?P<userPhoneNumberToVerify>\d{10})/withCode/(?P<verificationCode>\d{9})', 'app.views.checkWhetherSmsVerificationCodeIsValidAndReturnAToken', name='checkWhetherSmsVerificationCodeIsValidAndReturnAToken'),
     url(r'^login/$',
         'django.contrib.auth.views.login',
         {

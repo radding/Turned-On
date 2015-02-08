@@ -3,18 +3,31 @@ Definition of views.
 """
 
 from django.shortcuts import render
-from django.http import HttpRequest, JsonResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.template import RequestContext
 from datetime import datetime
 from random import randint
+from twilio.rest import TwilioRestClient
 
 def home(request):
     """Renders the home page."""
     return JsonResponse({"text":"hi"})
 
-def sendSmsVerificationCode(request, userPhoneNumberToVerify):
-	from twilio.rest import TwilioRestClient
+def checkWhetherSmsVerificationCodeIsValidAndReturnAToken(request, userPhoneNumberToVerify, verificationCode):
+	# TODO: need to check the provided code against the value stored in the database for that phone number.
+	isValidCode = true
+	
+	# TODO: this code should be stored in the database with an expiration time.
+	newMagicTokenForThisUser = "{0:09d}".format(randint(0,999999999))
 
+	if isValidCode:
+		return JsonResponse({"authToken": newMagicTokenForThisUser})
+	else:
+		response = HttpResponse()
+		response.status_code = 401
+		return response
+
+def sendSmsVerificationCode(request, userPhoneNumberToVerify):
 	# This should be the "master number" for our Twilio account.
 	fromNumber = "+14012065509"
 
