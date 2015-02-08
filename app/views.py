@@ -9,10 +9,12 @@ from datetime import datetime
 
 def home(request):
     """Renders the home page."""
+    import twilio.rest
     return JsonResponse({"text":"hi"})
 
 def contact(request):
     """Renders the contact page."""
+
     assert isinstance(request, HttpRequest)
     return render(
         request,
