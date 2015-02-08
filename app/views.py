@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse
 from django.template import RequestContext
 from datetime import datetime
+from random import randint
 
 def home(request):
     """Renders the home page."""
@@ -22,8 +23,8 @@ def sendSmsVerificationCode(request, userPhoneNumberToVerify):
 
 	client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
 
-	# TODO: this code should be randomly generated and 
-	verificationCode = "1234"
+	# TODO: this code should be stored in the database as a valid code for this user.
+	verificationCode = "{0:04d}".format(randint(0,9999))
 
 	# userPhoneNumberToVerify = "2063838296"
 
